@@ -5,5 +5,6 @@
     <string name="hello_world">Welcome to the RetroApp</string>
     <string name="action_settings">Settings</string>
     <string name="action_refresh_string">Refresh</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 </resources>
