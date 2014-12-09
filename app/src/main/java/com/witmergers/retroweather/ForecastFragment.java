@@ -2,9 +2,11 @@ package com.witmergers.retroweather;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,7 +33,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +42,12 @@ public class ForecastFragment extends Fragment {
     {
     }
 
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateWeather();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +70,10 @@ public class ForecastFragment extends Fragment {
         {
            updateWeather();
             return true;
+        } if(item.getItemId()  == R.id.action_settings)
+        {
+           startActivity(new Intent(getActivity(),SettingsActivity.class));
+           return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -70,7 +81,11 @@ public class ForecastFragment extends Fragment {
     private void updateWeather() {
 
         FetchWeatherTask fetchWeatherTask = new FetchWeatherTask();
-        fetchWeatherTask.execute("560076");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String location = preferences.getString(
+                getString(R.string.pref_location_key),
+                getString(R.string.pref_location_default));
+        fetchWeatherTask.execute(location);
         //
     }
 
@@ -91,7 +106,7 @@ public class ForecastFragment extends Fragment {
 
                 };
 
-        List<String> myList = new ArrayList<String>(Arrays.asList(fakedata));
+        List<String> myList = new ArrayList<String>();
 
         mForecastAdapter = new ArrayAdapter<String>(
                 getActivity(),

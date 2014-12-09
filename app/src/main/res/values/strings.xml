@@ -7,4 +7,9 @@
     <string name="action_refresh_string">Refresh</string>
     <string name="title_activity_detail">DetailActivity</string>
 
+    <string name="pref_location_key">locaton</string>
+    <string name="pref_location_label">Location</string>
+    <string name="pref_location_default">560076</string>
+    <string name="summary">Change Location code or Cityname..</string>
+
 </resources>
