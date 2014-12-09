@@ -94,7 +94,7 @@ public class ForecastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        String [] fakedata =
+       /* String [] fakedata =
                 {
                         "Today - Sunday -88/63",
                         "Today - Monday -88/63",
@@ -104,7 +104,7 @@ public class ForecastFragment extends Fragment {
                         "Today - Friday -88/63",
                         "Today - Saturday -88/63"
 
-                };
+                };*/
 
         List<String> myList = new ArrayList<String>();
 
