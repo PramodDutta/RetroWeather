@@ -17,6 +17,7 @@
     <string name="pref_units_dialoglabel">Choose Units</string>
     <string name="pref_defunits_metric">metric</string>
     <string name="pref_unit">unit</string>
+    <string name="string_share">Share</string>
 
     <array name="pref_units_options">
         <item>
@@ -29,9 +30,10 @@
     <array name="pref_units_values">
         <item>
             metric
-        </item> <item>
-        imperial
-    </item>
+        </item>
+        <item>
+           imperial
+        </item>
     </array>
 
 

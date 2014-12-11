@@ -3,12 +3,15 @@ package com.witmergers.retroweather;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.widget.ShareActionProvider;
 import android.widget.TextView;
 
 
@@ -31,6 +34,10 @@ public class DetailActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.detail, menu);
+
+
+
+
         return true;
     }
 
@@ -52,9 +59,28 @@ public class DetailActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
-        public PlaceholderFragment() {
+
+        @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+            super.onCreateOptionsMenu(menu, inflater);
+            inflater.inflate(R.menu.detailfragment,menu);
+            MenuItem menuItem = menu.findItem(R.id.menu_item_share);
+          //
+            ShareActionProvider shareActionProvider;
+            shareActionProvider = (ShareActionProvider)MenuItemCompat.getActionProvider(menuItem);
+
+
+            if(shareActionProvider !=null)
+            {
+                shareActionProvider.setShareIntent(createShareForecastIntent());
+
+            }
         }
 
+        public PlaceholderFragment() {
+            setHasOptionsMenu(true);
+        }
+        String forecastString;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
@@ -62,11 +88,21 @@ public class DetailActivity extends ActionBarActivity {
             View rootView = inflater.inflate(R.layout.fragment_detail, container, false);
             if(intent !=null && intent.hasExtra(Intent.EXTRA_TEXT))
             {
-                String forecastString = intent.getStringExtra(Intent.EXTRA_TEXT);
+                forecastString = intent.getStringExtra(Intent.EXTRA_TEXT);
                 TextView textView = (TextView)rootView.findViewById(R.id.detail_textview);
                 textView.setText(forecastString);
             }
             return rootView;
+        }
+
+
+        Intent createShareForecastIntent()
+        {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT,forecastString+ "#RetroWeather");
+            return shareIntent;
         }
     }
 }

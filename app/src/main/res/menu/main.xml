@@ -6,4 +6,8 @@
         android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never" />
+
+    <item android:id="@+id/mylocation"
+        android:title="My Location"
+        app:showAsAction="ifRoom"/>
 </menu>

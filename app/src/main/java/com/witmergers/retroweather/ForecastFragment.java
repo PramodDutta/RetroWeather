@@ -295,8 +295,27 @@ public class ForecastFragment extends Fragment {
          */
         private String formatHighLows(double high, double low) {
             // For presentation, assume the user doesn't care about tenths of a degree.
-            long roundedHigh = Math.round(high);
+
+          SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String unitType = sharedPreferences.getString(getString(R.string.pref_unit),getString(R.string.pref_defunits_metric));
+
+
+            if(!unitType.equals(getString(R.string.pref_defunits_metric))) {
+
+
+                high = (high*1.8)+32;
+                low =(low)*1.8+32;
+
+            }
+            else
+            {
+                Log.d(LOG_TAG,"WOW xDDDDDDDDDDDDDDDD");
+
+            }
+
+
             long roundedLow = Math.round(low);
+            long roundedHigh = Math.round(high);
 
             String highLowStr = roundedHigh + "/" + roundedLow;
             return highLowStr;
