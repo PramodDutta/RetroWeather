@@ -309,7 +309,7 @@ public class ForecastFragment extends Fragment {
             }
             else
             {
-                Log.d(LOG_TAG,"WOW xDDDDDDDDDDDDDDDD");
+                Log.d(LOG_TAG,"Imperila :  Unit is choosed");
 
             }
 

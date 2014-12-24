@@ -7,7 +7,7 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
 
-    <item android:id="@+id/mylocation"
+   <!-- <item android:id="@+id/mylocation"
         android:title="My Location"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"/>-->
 </menu>
